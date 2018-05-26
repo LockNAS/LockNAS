@@ -111,7 +111,15 @@ function loadRecords(){
 					str += '</td><td class="body-item mbr-fonts-style display-7">';
 					if(obj.itemStatus == "0"){
 						str += "等待解锁";
-						str += '<span class="input-group-btn" ><input value="解锁" style="background-color:#068587" type="button" class="btn btn-form btn-white-outline display-4" onclick="unlock('+obj.key+')"/></span>';
+						var currentDate = new Date();
+						var currentDateTimestamp = Date.parse(currentDate)/1000;
+						
+						if(currentDateTimestamp >= obj.expiredDate){
+							str += '<span class="input-group-btn" ><input value="解锁" style="background-color:#068587" type="button" class="btn btn-form btn-white-outline display-4" onclick="unlock('+obj.key+')"/></span>';							
+						}else{
+							str += '<span class="input-group-btn" ><input value="解锁" style="background-color:#068587" type="button" class="btn btn-form btn-white-outline display-4" onclick="alert(' + "'未到解锁日期。'" + ');return;"/></span>';
+						}
+						
 					}else{
 						str += "已经解锁";
 					}					
