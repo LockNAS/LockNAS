@@ -42,6 +42,7 @@ $(function(){
             listener: function(resp) {
                 console.log(JSON.stringify(resp));
 				alert("操作成功，请到锁仓记录页面查看你的锁仓");
+				loadRecords();
             }
         });
 	});
